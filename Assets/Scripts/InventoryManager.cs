@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    [HideInInspector] public ItemClass itemToAdd;
-    [HideInInspector] public ItemClass itemToRemove;
-
-    public List<ItemClass> items = new List<ItemClass>();
+    private ItemClass currentItem;
 
     public void Add(ItemClass item)
     {
-        items.Add(item);
+        if (currentItem == null)
+        {
+            // This should be a gameobject later on housing the attached itemclass
+            DropItem();
+            currentItem = item;
+        }
     }
     public void Remove(ItemClass item)
     {
-       items.Remove(item);
+        currentItem = null;
+    }
+
+    public void DropItem()
+    {
+        
     }
 }
